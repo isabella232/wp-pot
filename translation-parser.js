@@ -333,11 +333,19 @@ class TranslationParser {
 
     const filename = path.relative(this.options.relativeTo || path.dirname(this.options.destFile || __filename), filePath).replace(/\\/g, '/');
 
-    if (this.options.metadataFile === filename) {
-      this.parseFileHeader([ 'Plugin Name', 'Theme Name', 'Description', 'Author', 'Author URI', 'Plugin URI', 'Theme URI' ], filecontent, filename);
-    }
-
-    this.parseFileHeader([ 'Template Name' ], filecontent, filename);
+    this.parseFileHeader([
+      'Plugin Name',
+      'Theme Name',
+      'Description',
+      'Author',
+      'Author URI',
+      'Plugin URI',
+      'Theme URI',
+      'Template Name'
+    ],
+    filecontent,
+    filename
+    );
 
     // Skip file if no translation functions is found
     const validFunctionsInFile = new RegExp(this.options.functionCalls.valid.join('|').replace('$', '\\$'));
